@@ -4,6 +4,10 @@ import nltk
 from collections import Counter
 import numpy as np
 
+def exctract_dataset( path):
+    text = open(path).read()
+
+
 class DatasetManager:
 
     def __init__(self, path, stopwords_path):
