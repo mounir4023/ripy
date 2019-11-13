@@ -4,9 +4,26 @@ import nltk
 from collections import Counter
 import numpy as np
 
-def exctract_dataset( path):
+def extract_from_cacm( path):
     text = open(path).read()
-
+    docs = re.split(r'\n[.]I \d+\n',text)
+    docs[0] = re.sub(r'[.]I \d+\n','',docs[0])
+    for doc in docs:
+        doc = re.sub(r'[.]T\n','',doc)
+        doc = re.sub(r'[.]W\n','',doc)
+    print(docs[0])
+    print(docs[-1])
+    """
+    for d in docs:
+        d = re.sub(r'[.]T\n|[.]W\n','',d)
+        #d = re.sub(r'[.]W\n','',d)
+    #print(docs[0])
+    print(docs[4])
+    print(docs[5])
+    print(docs[6])
+    print(docs[-2])
+    print(docs[-1])
+    """
 
 class DatasetManager:
 
@@ -94,33 +111,3 @@ class DatafileDescriptor:
     def build_descriptor(self):
         self.make_tokens()
         self.descriptor = Counter(self.tokens)
-    
-
-        """
-        todo:
-        - Aujourd'hui is a stopword with punct
-        """
-        """
-        c = self.text
-        c = c.replace(","," ")
-        c = c.replace(";"," ")
-        c = c.replace("."," ")
-        c = c.replace(":"," ")
-        c = c.replace("?"," ")
-        c = c.replace("!"," ")
-        c = c.replace("$"," ")
-        c = c.replace("#"," ")
-        c = c.replace("@"," ")
-        c = c.replace("\""," ")
-        c = c.replace("/"," ")
-        c = c.replace("|"," ")
-        c = c.replace("*"," ")
-        c = c.replace("+"," ")
-        c = c.replace("-"," ")
-        c = c.replace("’"," ")
-        c = c.replace("`"," ")
-        c = c.replace("'"," ")
-        return c
-        #regex = r"['’,;.:!?_-]+?"
-	#return re.sub(regex," ",self.text)
-        """
