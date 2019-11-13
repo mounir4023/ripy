@@ -4,26 +4,22 @@ import nltk
 from collections import Counter
 import numpy as np
 
-def extract_from_cacm( path):
+def extract_from_cacm(path ,dirname):
     text = open(path).read()
     docs = re.split(r'\n[.]I \d+\n',text)
     docs[0] = re.sub(r'[.]I \d+\n','',docs[0])
     for i in range(len(docs)):
         docs[i] = re.sub(r'[.]T\n','',docs[i])
         docs[i] = re.sub(r'[.]W\n','',docs[i])
-    print(docs[0])
-    print(docs[-1])
-    """
-    for d in docs:
-        d = re.sub(r'[.]T\n|[.]W\n','',d)
-        #d = re.sub(r'[.]W\n','',d)
-    #print(docs[0])
-    print(docs[4])
-    print(docs[5])
-    print(docs[6])
-    print(docs[-2])
-    print(docs[-1])
-    """
+    if not os.path.exists('./'+dirname):
+        os.makedirs(dirname)
+        for i in range(len(docs)):
+            f = open(dirname+"/ripy"+str(i+1)+".cacm","w")
+            f.write(docs[i])
+            f.close()
+    else:
+        print("dir exists")
+
 
 class DatasetManager:
 
