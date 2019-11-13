@@ -8,9 +8,9 @@ def extract_from_cacm( path):
     text = open(path).read()
     docs = re.split(r'\n[.]I \d+\n',text)
     docs[0] = re.sub(r'[.]I \d+\n','',docs[0])
-    for doc in docs:
-        doc = re.sub(r'[.]T\n','',doc)
-        doc = re.sub(r'[.]W\n','',doc)
+    for i in range(len(docs)):
+        docs[i] = re.sub(r'[.]T\n','',docs[i])
+        docs[i] = re.sub(r'[.]W\n','',docs[i])
     print(docs[0])
     print(docs[-1])
     """
