@@ -18,24 +18,22 @@ def extract_from_cacm(path ,dirname):
             f.write(docs[i])
             f.close()
     else:
-        print("dir exists")
+        print("Dataset already exists !")
 
 
 class DatasetManager:
 
-    def __init__(self, path, stopwords_path):
+    def __init__(self, path):
         self.path = path 
         self.files = os.listdir(path) 
         self.size = len(self.files)
-        self.stoptokens = self.make_stoptokens(stopwords_path)
+        self.stoptokens = self.make_stoptokens()
         self.descriptors = self.parse_all() 
         self.inverted_index = self.generate_index()
         self.w_inverted_index = self.generate_w_index()
 
-    def make_stoptokens(self,path):
-        f = open(path,"r")
-        t = f.read()
-        return Counter(nltk.word_tokenize(t))
+    def make_stoptokens(self):
+        return Counter(nltk.corpus.stopwords.words('french'))
 
     def parse_all(self):
         ds = []
@@ -88,10 +86,15 @@ class DatafileDescriptor:
         self.manager = manager
         self.name = name
         self.path = manager.path+'/'+self.name  
-        self.io_ref = open(self.path,"r")
-        self.text =  self.io_ref.read()
+        self.text =  self.read_file()
         self.build_descriptor()
         self.max_freq = max(dict(self.descriptor).values())
+
+    def read_file(self):
+        f = open(self.path,"r")
+        t = f.read()
+        f.close()
+        return t
 
     def make_tokens(self):
         self.tokens = nltk.word_tokenize(self.remove_punctuation())

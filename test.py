@@ -3,14 +3,15 @@ import string
 from rilib import *
 from collections import Counter
 
-#testdir = "./Documents"
-#testfile = "d200.txt"
-#stopwordsfile = "./stopwords_fr.txt"
+testdir = "./dataset_files"
+testfile = "1000.cacm"
+stopwordsfile = "./stopwords_fr.txt"
 
-#manager = DatasetManager(testdir, stopwordsfile)
+manager = DatasetManager(testdir)
 
-cacmfile = "cacm_i_t_w.all"
-datadirname = "123456"
-extract_from_cacm(cacmfile,datadirname)
+#print(manager.w_inverted_index)
+print(manager.stoptokens)
+print(len(manager.stoptokens))
+
 
 
