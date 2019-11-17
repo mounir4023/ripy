@@ -17,7 +17,8 @@ def describe_token(token):
 ############## eel conf ##############
 
 eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
-eel.start('index.html')
+eel.start('index.html', mode='default')
+#eel.start('index.html' )
 #eel.start('index.html', mode='electron' )
 
 
