@@ -12,7 +12,7 @@
   <div id="app" >
     <v-app dark>
 
-      <v-toolbar light>
+      <v-toolbar app light>
 	<v-toolbar-title> RIPY </v-toolbar-title>
         <v-spacer></v-spacer>
     	<v-toolbar-items>
@@ -24,8 +24,12 @@
       </v-toolbar>
 
       <transition name="fade">
-      <v-content v-if="tab == 1">
-	      <div v-for="d in docs" > {{ d }}</div>
+      <v-content fluid v-if="tab == 1">
+	<v-container>
+	  <v-card light>
+	    <p v-for="d in docs"> test </p>
+	  </v-card>
+	</v-container>
       </v-content>
       </transition>
 
@@ -48,7 +52,7 @@
       </transition>
 
 
-      <v-footer light class="pa-4">
+      <v-footer app light class="pa-4">
         <div class="item"> 
 		USTHB M2 SII
 	</div>

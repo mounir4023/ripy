@@ -1,8 +1,4 @@
 
-function update_docs(e) {
-	app.docs = e;
-}
-
 var app = new Vue({ 
 	el: '#app', 
 	data: {
@@ -14,9 +10,12 @@ var app = new Vue({
 		select_tab: function(selected) {
 			this.tab = selected; 
 		},
+		update_docs: function(return_data) {
+			this.docs = return_data;
+		}
 	},
 	mounted: function() {
-		eel.get_all_docs()(update_docs) 
+		eel.get_all_docs()(this.update_docs) 
 	}, 
 });
 
