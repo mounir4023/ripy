@@ -5,6 +5,11 @@
 	background:#FFEB3B;
 }
 
+.width75 {
+	text-align:right;
+	width:75px;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: transform 2s ease;
 }

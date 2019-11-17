@@ -47,9 +47,9 @@
 		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
 	        <v-card class="pa-2 my-2 " v-for="d in description">
 		  <v-layout align-center justify-space-around row fill-height/>
-		    <div class="text-right"> {{d.document}} </div>
-		    <div class="item"> Fréquence: {{d.freq}} </div>
-		    <div class="item"> Poids: {{d.weight}} </div>
+		    <div class="width75">{{d.document}}</div>
+		    <div class=""> Fréquence: {{d.freq}} </div>
+		    <div class=""> Poids: {{d.weight}} </div>
 	          </v-layout>
 	        </v-card>
 	      </div>
