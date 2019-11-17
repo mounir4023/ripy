@@ -1,7 +1,8 @@
 
 .active {
 	color:red;
-	background:orange;
+	//background:#F48FB1;
+	background:#FFEB3B;
 }
 
 .fade-enter-active, .fade-leave-active {

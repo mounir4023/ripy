@@ -13,7 +13,7 @@
     <v-app dark>
 
       <v-toolbar app light>
-	<v-toolbar-title> RIPY </v-toolbar-title>
+	<v-toolbar-title class="font-weight-black"> RIPY </v-toolbar-title>
         <v-spacer></v-spacer>
     	<v-toolbar-items>
 	  <v-btn flat v-on:click="select_tab(1)" v-bind:class="{active: tab==1}">Recherche</v-btn>
@@ -24,10 +24,36 @@
       </v-toolbar>
 
       <transition name="fade">
-      <v-content fluid v-if="tab == 1">
-	<v-container>
-	  <v-card light>
-	    <p v-for="d in docs"> test </p>
+      <v-content v-if="tab == 1">
+	<v-container >
+	  <v-layout>
+	    <v-flex md8 offset-md2>
+	      <p> Quel mot vous êtes entrain de chercher ?</p>
+	      <v-card class="pa-3">
+		<v-text-field 
+			v-model="token" 
+			label="Mot recherché" 
+			color="#FFEB3B"
+			append-icon="close" 
+			:append-icon-cb="clear_token">
+		</v-text-field>
+		<v-layout>
+        	  <v-spacer></v-spacer>
+	   	  <v-btn light @click="describe_token">Rechercher</v-btn>
+	          <v-spacer></v-spacer>
+		</v-layout>
+	      </v-card>
+	      <div class="mt-0" v-if="description.length != 0">
+		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
+	        <v-card class="pa-2 my-2 " v-for="d in description">
+		  <v-layout align-center justify-space-around row fill-height/>
+		    <div class="text-right"> {{d.document}} </div>
+		    <div class="item"> Fréquence: {{d.freq}} </div>
+		    <div class="item"> Poids: {{d.weight}} </div>
+	          </v-layout>
+	        </v-card>
+	      </div>
+	    </v-flex>
 	  </v-card>
 	</v-container>
       </v-content>
@@ -58,8 +84,7 @@
 	</div>
         <v-spacer></v-spacer>
         <div class="item"> 
-		By Devnir & LotfiBk
-
+		By devNir & LotfiBk
 	</div>
         <v-spacer></v-spacer>
         <div class="item"> 

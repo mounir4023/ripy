@@ -14,7 +14,7 @@ def extract_from_cacm(path ,dirname):
     if not os.path.exists('./'+dirname):
         os.makedirs(dirname)
         for i in range(len(docs)):
-            f = open(dirname+"/ripy"+str(i+1)+".cacm","w")
+            f = open(dirname+"/"+str(i+1)+".cacm","w")
             f.write(docs[i])
             f.close()
     else:
@@ -33,7 +33,7 @@ class DatasetManager:
         self.w_inverted_index = self.generate_w_index()
 
     def make_stoptokens(self):
-        return Counter(nltk.corpus.stopwords.words('french'))
+        return Counter(nltk.corpus.stopwords.words('english'))
 
     def parse_all(self):
         ds = []

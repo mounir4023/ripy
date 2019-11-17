@@ -9,7 +9,13 @@ manager = DatasetManager(testdir)
 
 @eel.expose
 def describe_token(token):
-    return { 'freq': manager.docs_of_token(token) , 'weight': manager.w_docs_of_token(token) }
+    description = [ ]
+    freqs = manager.docs_of_token(token)
+    weights = manager.w_docs_of_token(token)
+    for i in range(0,len(freqs)):
+        w = round(weights[i][1],2)
+        description.append({"document":freqs[i][0],"freq":freqs[i][1],"weight":w})
+    return description
 
 @eel.expose
 def get_all_docs():
