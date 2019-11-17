@@ -4,11 +4,11 @@ new Vue({
 	el: '#app', 
 	data: {
 		tab: 1,
+		isActive: true,
 	},
 	methods: {
 		select_tab: function(selected) {
 			this.tab = selected; 
-			console.log(this.tab);
 		},
 	},
 });

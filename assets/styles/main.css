@@ -1,36 +1,13 @@
 
-.h1 {
+.active {
 	color:red;
-	font-family:sans-serif;
-	text-align:center;
+	background:orange;
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: transform 2s;
+  transition: transform 2s ease;
 }
 .fade-enter, .fade-leave-to  {
   transform: translateY(-100vh);
 }
-
-/*
-.tabswitch-enter-active {
-	animation: tabslide 1s;
-	background:blue;
-}
-
-.tabswitch-leave-active {
-	animation: tabslide reverse 1s;
-	background:red;
-	z-index:-100;
-}
-
-@keyframes tabslide {
-	0% {
-		transform:translateY(0vh);
-	}
-	100% {
-		transform:translateY(100vh);
-	}
-}
-*/
 

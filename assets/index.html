@@ -15,10 +15,10 @@
 	<v-toolbar-title> RIPY </v-toolbar-title>
         <v-spacer></v-spacer>
     	<v-toolbar-items>
-	  <v-btn flat v-on:click="select_tab(1)">Recherche</v-btn>
-	  <v-btn flat v-on:click="select_tab(2)">Model Booleen</v-btn>
-	  <v-btn flat v-on:click="select_tab(3)">Model Vectoriel</v-btn>
-          <v-btn flat v-on:click="select_tab(4)">Evaluation</v-btn>
+	  <v-btn flat v-on:click="select_tab(1)" v-bind:class="{active: tab==1}">Recherche</v-btn>
+	  <v-btn flat v-on:click="select_tab(2)" v-bind:class="{active: tab==2}">Model Booleen</v-btn>
+	  <v-btn flat v-on:click="select_tab(3)" v-bind:class="{active: tab==3}">Model Vectoriel</v-btn>
+	  <v-btn flat v-on:click="select_tab(4)" v-bind:class="{active: tab==4}">Evaluation</v-btn>
 	</v-toolbar-items>
       </v-toolbar>
 
