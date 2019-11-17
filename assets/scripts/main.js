@@ -1,16 +1,23 @@
 
+function update_docs(e) {
+	app.docs = e;
+}
 
-new Vue({ 
+var app = new Vue({ 
 	el: '#app', 
 	data: {
 		tab: 1,
 		isActive: true,
+		docs: [ ],
 	},
 	methods: {
 		select_tab: function(selected) {
 			this.tab = selected; 
 		},
 	},
+	mounted: function() {
+		eel.get_all_docs()(update_docs) 
+	}, 
 });
 
 
