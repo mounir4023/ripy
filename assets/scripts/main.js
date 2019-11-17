@@ -1,6 +1,17 @@
 
 
-new Vue({ el: '#app' });
+new Vue({ 
+	el: '#app', 
+	data: {
+		tab: 1,
+	},
+	methods: {
+		select_tab: function(selected) {
+			this.tab = selected; 
+			console.log(this.tab);
+		},
+	},
+});
 
 
 
