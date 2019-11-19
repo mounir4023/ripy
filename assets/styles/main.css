@@ -26,6 +26,6 @@
   transition: transform 2s ease;
 }
 .fade-enter, .fade-leave-to  {
-  transform: translateY(-100vh);
+  transform: translateX(100vw);
 }
 

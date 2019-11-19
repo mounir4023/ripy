@@ -12,7 +12,7 @@
   <div id="app" >
     <v-app dark>
 
-      <v-toolbar app light>
+      <v-toolbar app light ref="tb">
 	<v-toolbar-title class="font-weight-black"> RIPY </v-toolbar-title>
         <v-spacer></v-spacer>
     	<v-toolbar-items>
@@ -25,11 +25,13 @@
 
       <transition name="fade">
       <v-content v-if="tab == 1">
-	<v-container >
+	<v-container fill-height>
 	  <v-layout>
-	    <v-flex md8 offset-md2 class="fixed-widgets-layout">
-	      <div class="fixed-widget" app>
+	    <v-flex md8 offset-md2 >
+
 	      <p> Quel mot vous êtes entrain de chercher ?</p>
+
+	      <vue-position-sticky :offset-Top="tbh">
 	      <v-card class="pa-3">
 		<v-text-field 
 			v-model="token" 
@@ -44,8 +46,8 @@
 	          <v-spacer></v-spacer>
 		</v-layout>
 	      </v-card>
-	      </div>
-	      <v-divider></v-divider>
+	      </vue-position-sticky>
+
 	      <div class="mt-0" v-if="description.length != 0">
 		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
 	        <v-card class="pa-2 my-2 " v-for="d in description">
@@ -56,8 +58,9 @@
 	          </v-layout>
 	        </v-card>
 	      </div>
+
 	    </v-flex>
-	  </v-card>
+	  </v-layout>
 	</v-container>
       </v-content>
       </transition>
@@ -101,6 +104,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-position-sticky@0.2.0/dist/vue-position-sticky.umd.min.js"></script>
   <script type="text/javascript" src="/eel.js"></script>
   <script type="text/javascript" src="scripts/main.js"></script>
 </body>

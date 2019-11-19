@@ -7,6 +7,10 @@ var app = new Vue({
 		docs: [ ],
 		token: "",
 		description: [ ],
+		tbh: 0,
+	},
+	computed : {
+		tb_height: function() { if (this.isMounted) console.log(this.$refs.tb.computedHeight); return 0; },
 	},
 	methods: {
 		select_tab: function(selected) {
@@ -28,7 +32,7 @@ var app = new Vue({
 		},
 	},
 	mounted: function() {
-		eel.get_all_docs()(this.update_docs) 
+		this.isMounted = true;
 	}, 
 });
 
