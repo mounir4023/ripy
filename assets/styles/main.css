@@ -13,12 +13,13 @@
 .fixed-widgets-layout {
 	position:relative;
 	height:100%;
-	padding-top:300px !important;
+	padding-top:200px !important;
 }
 
 .fixed-widget {
 	position:absolute;
-	top:40px;
+	width:100%;
+	top:0px;
 }
 
 .fade-enter-active, .fade-leave-active {

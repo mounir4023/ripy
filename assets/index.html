@@ -25,10 +25,10 @@
 
       <transition name="fade">
       <v-content v-if="tab == 1">
-	<v-container class="fixed-card-layout">
+	<v-container >
 	  <v-layout>
-	    <v-flex md8 offset-md2>
-	      <div class="fixed-widget">
+	    <v-flex md8 offset-md2 class="fixed-widgets-layout">
+	      <div class="fixed-widget" app>
 	      <p> Quel mot vous êtes entrain de chercher ?</p>
 	      <v-card class="pa-3">
 		<v-text-field 
@@ -45,6 +45,7 @@
 		</v-layout>
 	      </v-card>
 	      </div>
+	      <v-divider></v-divider>
 	      <div class="mt-0" v-if="description.length != 0">
 		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
 	        <v-card class="pa-2 my-2 " v-for="d in description">
