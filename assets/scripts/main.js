@@ -19,9 +19,6 @@ var app = new Vue({
 			this.token = "";
 			this.description = [ ];
 		},
-		normalize_length: function(doc) {
-			return doc.padEnd(12," ");
-		},
 		// eel callbacks
 		update_docs: function(return_data) {
 			this.docs = return_data;
