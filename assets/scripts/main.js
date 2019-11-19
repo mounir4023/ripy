@@ -7,7 +7,7 @@ var app = new Vue({
 		docs: [ ],
 		token: "",
 		description: [ ],
-		tbh: 0,
+		tbh: 64,
 	},
 	computed : {
 		tb_height: function() { if (this.isMounted) console.log(this.$refs.tb.computedHeight); return 0; },

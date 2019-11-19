@@ -23,7 +23,6 @@
 	</v-toolbar-items>
       </v-toolbar>
 
-      <transition name="fade">
       <v-content v-if="tab == 1">
 	<v-container fill-height>
 	  <v-layout>
@@ -32,7 +31,7 @@
 	      <p> Quel mot vous êtes entrain de chercher ?</p>
 
 	      <vue-position-sticky :offset-Top="tbh">
-	      <v-card class="pa-3">
+	      <v-card class="pa-3" elevation=24>
 		<v-text-field 
 			v-model="token" 
 			label="Mot recherché" 
@@ -63,25 +62,18 @@
 	  </v-layout>
 	</v-container>
       </v-content>
-      </transition>
 
-      <transition name="fade">
       <v-content v-if="tab == 2">
-        <div>TAB 2</div>
+        <div style="height:400px; width:800px; background:red;">TAB 2</div>
       </v-content>
-      </transition>
 
-      <transition name="fade">
       <v-content v-if="tab == 3">
-        <div>TAB 3</div>
+        <div style="height:400px; width:800px; background:green;">TAB 3</div>
       </v-content>
-      </transition>
 
-      <transition name="fade">
       <v-content v-if="tab == 4">
-        <div>TAB 4</div>
+        <div style="height:400px; width:800px; background:blue;">TAB 4</div>
       </v-content>
-      </transition>
 
 
       <v-footer app light class="pa-4">

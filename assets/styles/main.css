@@ -23,9 +23,21 @@
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: transform 2s ease;
-}
-.fade-enter, .fade-leave-to  {
-  transform: translateX(100vw);
+  transition: transform 2s ease , opacity 2s linear;
 }
 
+.fade-enter {
+  transform: translateX(-100vw);
+  opacity:0;
+}
+.fade-enter-to {
+  opacity:1;
+}
+
+.fade-leave-to {
+  transform: translateX(100vw);
+  opacity:0;
+}
+.fade-leave {
+  opacity:1;
+}
