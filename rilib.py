@@ -77,7 +77,7 @@ class DatasetManager:
                 dot[item[0][0]] = 1
 
         for item in self.inverted_index.items():
-            index[item[0]] = ( item[1] / dmf[item[0][1]] ) * ( np.log10( self.size / dot[item[0][0]]) + 1 )
+            index[item[0]] = ( item[1] / dmf[item[0][1]] ) *  np.log10( (self.size / dot[item[0][0]]) + 1 )
 
         return index
 
@@ -86,6 +86,12 @@ class DatasetManager:
 
     def w_tokens_of_doc(self, word):
         return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == word ]
+
+    def process_boolean(selfn query):
+        data = "(a + b * (c + ( a * c ) * ( b + c )))"
+        parsed = nestedExpr().parseString(data).asList()
+        types = [ type(i) for i in parsed[0] ]
+        return
 
 class DatafileDescriptor:
 
