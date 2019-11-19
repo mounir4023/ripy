@@ -4,6 +4,14 @@ import nltk
 from collections import Counter
 import numpy as np
 
+def clean_cacm(path,cleanname):
+    original = open(path).read()
+    clean = re.sub(r'(?:^|\n)[.]B(?:.|\s)*?(?:[.]I|$)',r'\n.I',original)
+    clean = re.sub(r'[.]I$','',clean)
+    final = open(cleanname,'w')
+    final.write(clean)
+    final.close()
+    
 def extract_from_cacm(path ,dirname):
     text = open(path).read()
     docs = re.split(r'\n[.]I \d+\n',text)
@@ -19,7 +27,6 @@ def extract_from_cacm(path ,dirname):
             f.close()
     else:
         print("Dataset already exists !")
-
 
 class DatasetManager:
 
