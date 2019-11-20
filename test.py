@@ -8,7 +8,8 @@ testdir = "./dataset_files"
 testreq = "(aaa+!bbb+(ccc+!aaa*!ddd+(aaa*ddd))*bbb)"
 manager = DatasetManager(testdir)
 
-manager.process_boolean(testreq)
+#manager.process_boolean(testreq)
+print( set(re.findall(r'\w+',testreq) ))
 
 #print(len(manager.inverted_index.items()) )
 #print(len(manager.w_inverted_index.items()) )

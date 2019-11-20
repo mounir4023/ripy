@@ -124,9 +124,13 @@ class DatafileDescriptor:
         self.descriptor = Counter(self.tokens)
 
     def satisfy_boolean_q(self, query):
-        print(query)
         parsed = nestedExpr().parseString(query).asList()
-        print(parsed)
+        print( parsed )
+
+        for i in parsed[0]:
+            if str(type(i)) == "<class 'str'>":
+                print(i)
+
         split = re.split(r'[+]', parsed[0][0] ) 
         added = [ ]
         for i in split[0:len(split)-1]:
