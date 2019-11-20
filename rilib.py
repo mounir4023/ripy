@@ -90,7 +90,21 @@ class DatasetManager:
         return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == word ]
 
     def process_boolean(self, query):
-        return [ d.satisfy_boolean_q(query) for d in self.descriptors[:1] ]
+        docs = [ ]
+        tokens = list(set(re.findall(r'\w+', query)))
+        for doc in self.files:
+            q = query
+            for token in tokens:
+                try:
+                    q = q.replace(token,str(self.inverted_index[(token,doc)]>0))
+                except KeyError:
+                    q = q.replace(token,'False')
+            q = q.replace('!',' not ')
+            q = q.replace('*',' and ')
+            q = q.replace('+',' or ')
+            if (eval(q)):
+                docs.append(doc)
+        return docs
 
 class DatafileDescriptor:
 
@@ -126,11 +140,11 @@ class DatafileDescriptor:
     def satisfy_boolean_q(self, query):
         parsed = nestedExpr().parseString(query).asList()
         print( parsed )
-
-        for i in parsed[0]:
+        for i in parsed:
             if str(type(i)) == "<class 'str'>":
                 print(i)
-
+        #tmp = re.findall(r'(\w+)[+]',parsed[0][0])
+        #split = re.findall(r'.*?[+]', parsed[0][0])
         split = re.split(r'[+]', parsed[0][0] ) 
         added = [ ]
         for i in split[0:len(split)-1]:
@@ -144,5 +158,3 @@ class DatafileDescriptor:
 
 
 
-        #tmp = re.findall(r'(\w+)[+]',parsed[0][0])
-        #split = re.findall(r'.*?[+]', parsed[0][0])
