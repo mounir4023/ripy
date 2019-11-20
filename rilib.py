@@ -3,6 +3,8 @@ import re
 import nltk
 from collections import Counter
 import numpy as np
+from pyparsing import nestedExpr
+
 
 def clean_cacm(path,cleanname):
     original = open(path).read()
@@ -87,11 +89,8 @@ class DatasetManager:
     def w_tokens_of_doc(self, word):
         return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == word ]
 
-    def process_boolean(selfn query):
-        data = "(a + b * (c + ( a * c ) * ( b + c )))"
-        parsed = nestedExpr().parseString(data).asList()
-        types = [ type(i) for i in parsed[0] ]
-        return
+    def process_boolean(self, query):
+        return [ d.satisfy_boolean_q(query) for d in self.descriptors[:1] ]
 
 class DatafileDescriptor:
 
@@ -123,3 +122,23 @@ class DatafileDescriptor:
     def build_descriptor(self):
         self.make_tokens()
         self.descriptor = Counter(self.tokens)
+
+    def satisfy_boolean_q(self, query):
+        print(query)
+        parsed = nestedExpr().parseString(query).asList()
+        print(parsed)
+        split = re.split(r'[+]', parsed[0][0] ) 
+        added = [ ]
+        for i in split[0:len(split)-1]:
+            added.append(i)
+            added.append('+')
+        added.append(split[-1])
+        print(added)
+        parsed[0][0:1] = added
+        print(parsed)
+        return 0
+
+
+
+        #tmp = re.findall(r'(\w+)[+]',parsed[0][0])
+        #split = re.findall(r'.*?[+]', parsed[0][0])

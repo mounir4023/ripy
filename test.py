@@ -5,7 +5,13 @@ from collections import Counter
 import eel
 
 testdir = "./dataset_files"
+testreq = "(aaa+!bbb+(ccc+!aaa*!ddd+(aaa*ddd))*bbb)"
 manager = DatasetManager(testdir)
+
+manager.process_boolean(testreq)
+
+#print(len(manager.inverted_index.items()) )
+#print(len(manager.w_inverted_index.items()) )
 
 @eel.expose
 def describe_token(token):
@@ -24,7 +30,8 @@ def get_all_docs():
 
 
 eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
-eel.start('index.html', size=(1024,600), position=(150,50))
+#eel.start('index.html', size=(1024,600), position=(150,50))
+
 #eel.start('index.html', mode='default' )
 #eel.start('index.html', mode='electron' )
 
