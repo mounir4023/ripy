@@ -71,7 +71,7 @@
 	      <p> Saisissez une requête booléenne: </p>
 
 	      <vue-position-sticky :offset-Top="tbh">
-	      <v-card class="pa-3" elevation=24>
+	      <v-card class="pa-3" elevation=24 v-show="!docdialog">
 		<v-text-field 
 			v-model="boolquery" 
 			label="Requête" 
@@ -91,14 +91,26 @@
 	        <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p>
 		<v-layout wrap align-space-between justify-space-between >
 
-		<v-flex md6 v-for="d in booldesc" class="px-2">
-	        <v-card class="pa-2 my-2 text-sm-center">
-		<div class="cpointer"> {{d}} </div>
-	        </v-card>
-		</v-flex md-6>
+		  <v-flex md6 v-for="d in booldesc" class="px-2">
+		    <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
+		      <div class="cpointer"> {{d}} </div>
+	            </v-card>
+		  </v-flex md-6>
 
 		</v-layout>
 	      </div>
+
+	      <v-dialog v-model="docdialog" light width="500" >
+      		<v-card>
+		  <v-card-title   class="headline grey lighten-2"  primary-title> Document: {{doc}} </v-card-title>
+       		  <v-card-text> {{doctext}} </v-card-text>
+		  <v-divider></v-divider>
+		  <v-card-actions>
+    	 	    <v-spacer></v-spacer>
+          	    <v-btn color="secondary"  flat   @click="close_doc" > Fermer </v-btn>
+        	  </v-card-actions>
+      		</v-card>
+	      </v-dialog>
 
 	    </v-flex>
 	  </v-layout>

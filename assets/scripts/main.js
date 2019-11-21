@@ -3,7 +3,11 @@ var app = new Vue({
 	el: '#app', 
 	data: {
 		tab: 1,
+		tbh: 64,
 		isActive: true,
+		docdialog: false,
+		doctext: "",
+		doc: "",
 		docs: [ ],
 		token: "",
 		boolquery: "",
@@ -11,7 +15,6 @@ var app = new Vue({
 		description: [ ],
 		booldesc: [ ],
 		vectdesc: [ ],
-		tbh: 64,
 	},
 	computed : {
 		tb_height: function() { if (this.isMounted) console.log(this.$refs.tb.computedHeight); return 0; },
@@ -19,6 +22,11 @@ var app = new Vue({
 	methods: {
 		select_tab: function(selected) {
 			this.tab = selected; 
+		},
+		open_doc: function(doc) {
+			this.doc = doc;
+			eel.open_doc(this.doc)(this.update_doctext)
+			this.docdialog = true;
 		},
 		describe_token: function(){
 			eel.describe_token(this.token)(this.update_description)
@@ -42,6 +50,11 @@ var app = new Vue({
 			q = q.replace(" not "," ! ");
 			return q;
 		},
+		close_doc() {
+			this.doc = "";
+			this.docdialog = false;
+			this.doctext = "";
+		},
 		// eel callbacks
 		update_docs: function(return_data) {
 			this.docs = return_data;
@@ -51,6 +64,9 @@ var app = new Vue({
 		},
 		update_booldesc: function(return_data) {
 			this.booldesc = return_data;
+		},
+		update_doctext: function(return_data) {
+			this.doctext = return_data
 		},
 	},
 	mounted: function() {

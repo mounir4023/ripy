@@ -91,7 +91,7 @@ class DatasetManager:
 
     def docs_of_boolean_q(self, query):
         docs = [ ]
-        tokens = list(set(re.findall(r'\w+', query)))
+        tokens = sorted(list(set(re.findall(r'\w+', query))),key = len)
         for doc in self.files:
             q = query
             for token in tokens:
@@ -112,7 +112,7 @@ class DatafileDescriptor:
         self.manager = manager
         self.name = name
         self.path = manager.path+'/'+self.name  
-        self.text =  self.read_file()
+        self.text = self.read_file()
         self.build_descriptor()
         self.max_freq = max(dict(self.descriptor).values())
 

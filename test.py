@@ -28,6 +28,10 @@ def process_boolean(query):
     return booldesc
 
 @eel.expose
+def open_doc(doc):
+    return open(manager.path+"/"+doc,"r").read()
+
+@eel.expose
 def get_all_docs():
     return manager.files
     
