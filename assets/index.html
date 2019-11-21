@@ -28,7 +28,7 @@
 	  <v-layout>
 	    <v-flex md8 offset-md2 >
 
-	      <p> Quel mot vous êtes entrain de chercher ?</p>
+	      <p>  Insérez le mot que vous cherchez et vous trouverez la liste des documents le contenant: </p>
 
 	      <vue-position-sticky :offset-Top="tbh">
 	      <v-card class="pa-3" elevation=24>
@@ -51,9 +51,9 @@
 		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
 	        <v-card class="pa-2 my-2 " v-for="d in description">
 		  <v-layout align-center justify-space-around row fill-height/>
-		    <div class="width75">{{d.document}}</div>
-		    <div class=""> Fréquence: {{d.freq}} </div>
-		    <div class=""> Poids: {{d.weight}} </div>
+		    <div class="width75 text-md-right">{{d.document}}</div>
+		    <div class="width75">Fréquence: {{d.freq}} </div>
+		    <div class="width75 text-md-left">Poids: {{d.weight}} </div>
 	          </v-layout>
 	        </v-card>
 	      </div>
@@ -64,7 +64,41 @@
       </v-content>
 
       <v-content v-if="tab == 2">
-        <div style="height:400px; width:800px; background:red;">TAB 2</div>
+	<v-container fill-height>
+	  <v-layout>
+	    <v-flex md8 offset-md2 >
+
+	      <p> Saisissez une requête booléenne: </p>
+
+	      <vue-position-sticky :offset-Top="tbh">
+	      <v-card class="pa-3" elevation=24>
+		<v-text-field 
+			v-model="boolquery" 
+			label="Requête" 
+			color="#FFEB3B"
+			append-icon="close" 
+			:append-icon-cb="clear_b_query">
+		</v-text-field>
+		<v-layout>
+        	  <v-spacer></v-spacer>
+	   	  <v-btn light @click="process_boolean">Rechercher</v-btn>
+	          <v-spacer></v-spacer>
+		</v-layout>
+	      </v-card>
+	      </vue-position-sticky>
+
+	      <div class="mt-0" v-if="booldesc.length != 0">
+	        <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p>
+	        <v-card class="pa-2 my-2 " v-for="d in booldesc">
+		  <v-layout align-center justify-space-around row fill-height/>
+		    <div class="width75">{{d.document}}</div>
+	          </v-layout>
+	        </v-card>
+	      </div>
+
+	    </v-flex>
+	  </v-layout>
+	</v-container>
       </v-content>
 
       <v-content v-if="tab == 3">

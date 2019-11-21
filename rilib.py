@@ -89,7 +89,7 @@ class DatasetManager:
     def w_tokens_of_doc(self, word):
         return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == word ]
 
-    def process_boolean(self, query):
+    def docs_of_boolean_q(self, query):
         docs = [ ]
         tokens = list(set(re.findall(r'\w+', query)))
         for doc in self.files:

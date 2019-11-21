@@ -9,10 +9,6 @@ testdir = "./dataset_files"
 testreq = "(international + generic)" 
 manager = DatasetManager(testdir)
 
-print(testreq)
-print(manager.process_boolean(testreq))
-
-
 @eel.expose
 def describe_token(token):
     description = [ ]
@@ -22,6 +18,14 @@ def describe_token(token):
         w = round(weights[i][1],2)
         description.append({"document":freqs[i][0],"freq":freqs[i][1],"weight":w})
     return description
+
+@eel.expose
+def process_boolean(query):
+    print(query)
+    booldesc = [ ]
+    docs = manager.docs_of_boolean_q(query)
+    booldesc[0:1] = docs
+    return booldesc
 
 @eel.expose
 def get_all_docs():
