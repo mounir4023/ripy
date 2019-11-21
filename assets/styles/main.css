@@ -9,6 +9,10 @@
 	width:80px;
 }
 
+.cpointer {
+	cursor:pointer;
+}
+
 .fixed-widgets-layout {
 	position:relative;
 	height:100%;

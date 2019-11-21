@@ -89,11 +89,15 @@
 
 	      <div class="mt-0" v-if="booldesc.length != 0">
 	        <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p>
-	        <v-card class="pa-2 my-2 " v-for="d in booldesc">
-		  <v-layout align-center justify-space-around row fill-height/>
-		    <div class="width75">{{d.document}}</div>
-	          </v-layout>
+		<v-layout wrap align-space-between justify-space-between >
+
+		<v-flex md6 v-for="d in booldesc" class="px-2">
+	        <v-card class="pa-2 my-2 text-sm-center">
+		<div class="cpointer"> {{d}} </div>
 	        </v-card>
+		</v-flex md-6>
+
+		</v-layout>
 	      </div>
 
 	    </v-flex>
