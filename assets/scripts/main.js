@@ -1,4 +1,6 @@
 
+document.documentElement.style.overflow = 'auto';
+
 var app = new Vue({ 
 	el: '#app', 
 	data: {

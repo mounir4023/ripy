@@ -21,7 +21,6 @@ def describe_token(token):
 
 @eel.expose
 def process_boolean(query):
-    print(query)
     booldesc = [ ]
     docs = manager.docs_of_boolean_q(query)
     booldesc[0:1] = docs
