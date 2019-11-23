@@ -1,5 +1,5 @@
 
-document.documentElement.style.overflow = 'auto';
+//document.documentElement.style.overflow = 'hidden';
 
 var app = new Vue({ 
 	el: '#app', 
