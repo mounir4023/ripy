@@ -13,6 +13,29 @@
 	cursor:pointer;
 }
 
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    /*background:#FFEB3B;*/
+    background:#FDD835;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4);
+	opacity:0;
+}
+
 .fixed-widgets-layout {
 	position:relative;
 	height:100%;
