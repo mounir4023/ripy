@@ -106,6 +106,20 @@ class DatasetManager:
                 docs.append(doc)
         return docs
 
+    def docs_of_vectorial_q(self, query):
+        docs = [ ]
+        tokens = nltk.word_tokenize(query)
+        for doc in self.files:
+            score = 0
+            for token in tokens:
+                try:
+                    score = score + self.inverted_index[(token,doc)]
+                except:
+                    pass
+            if score > 0:
+                docs.append((doc,score))
+        return sorted(docs, key = lambda doc: doc[1], reverse = True)
+
 class DatafileDescriptor:
 
     def __init__(self, name, manager):
