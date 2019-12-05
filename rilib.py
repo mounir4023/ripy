@@ -96,9 +96,13 @@ class DatasetManager:
             q = query
             for token in tokens:
                 try:
-                    q = q.replace(token,str(self.inverted_index[(token,doc)]>0))
+                    q = q.replace(token,str(self.inverted_index[(token,doc)]))
                 except KeyError:
-                    q = q.replace(token,'False')
+                    q = q.replace(token,'0')
+            for freq in re.findall(r'\d+', query):
+                if freq != 0 :
+                    q = q.replace(freq, 'True')
+            q = q.replace('0', 'False')
             q = q.replace('!',' not ')
             q = q.replace('*',' and ')
             q = q.replace('+',' or ')
@@ -139,6 +143,7 @@ class DatafileDescriptor:
     def make_tokens(self):
         self.tokens = nltk.word_tokenize(self.remove_punctuation())
         self.tokens = self.remove_stopwords(self.tokens)
+        self.tokens = [ t.lower() for t in self.tokens ]
 
     def remove_punctuation(self):
         regex = r'\W+'
