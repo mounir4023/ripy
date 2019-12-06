@@ -14,113 +14,136 @@
     <v-app dark>
 
       <v-toolbar app light ref="tb">
-	<v-toolbar-title class="font-weight-black"> RIPY </v-toolbar-title>
+        <v-toolbar-title class="font-weight-black"> RIPY </v-toolbar-title>
         <v-spacer></v-spacer>
-    	<v-toolbar-items>
-	  <v-btn flat v-on:click="select_tab(1)" v-bind:class="{active: tab==1}">Recherche</v-btn>
-	  <v-btn flat v-on:click="select_tab(2)" v-bind:class="{active: tab==2}">Model Booleen</v-btn>
-	  <v-btn flat v-on:click="select_tab(3)" v-bind:class="{active: tab==3}">Model Vectoriel</v-btn>
-	  <v-btn flat v-on:click="select_tab(4)" v-bind:class="{active: tab==4}">Evaluation</v-btn>
-	</v-toolbar-items>
+        <v-toolbar-items>
+          <v-btn flat v-on:click="select_tab(1)" v-bind:class="{active: tab==1}">Recherche</v-btn>
+          <v-btn flat v-on:click="select_tab(2)" v-bind:class="{active: tab==2}">Model Booleen</v-btn>
+          <v-btn flat v-on:click="select_tab(3)" v-bind:class="{active: tab==3}">Model Vectoriel</v-btn>
+          <v-btn flat v-on:click="select_tab(4)" v-bind:class="{active: tab==4}">Evaluation</v-btn>
+        </v-toolbar-items>
       </v-toolbar>
 
       <!--v-content v-if="tab == 1" style="overflow:auto; height:100vh; position:relative"-->
       <v-content v-if="tab == 1">
-	<v-container fill-height>
-	  <v-layout>
-	    <v-flex md8 offset-md2 >
+        <v-container fill-height>
+          <v-layout>
+            <v-flex md8 offset-md2 >
 
-	      <p>  Insérez le mot que vous cherchez et vous trouverez la liste des documents le contenant: </p>
+              <p>  Insérez le mot que vous cherchez et vous trouverez la liste des documents le contenant: </p>
 
-	      <vue-position-sticky :offset-Top="tbh">
-	      <v-card class="pa-3" elevation=24>
-		<v-text-field 
-			v-model="token" 
-			label="Mot recherché" 
-			color="#FFEB3B"
-			append-icon="close" 
-			:append-icon-cb="clear_token">
-		</v-text-field>
-		<v-layout>
-        	  <v-spacer></v-spacer>
-	   	  <v-btn light @click="describe_token">Rechercher</v-btn>
-	          <v-spacer></v-spacer>
-		</v-layout>
-	      </v-card>
-	      </vue-position-sticky>
+              <vue-position-sticky :offset-Top="tbh">
+                <v-card class="pa-3" elevation=24>
+                  <v-text-field v-model="token" label="Mot recherché" color="#FFEB3B" append-icon="close" :append-icon-cb="clear_token">
+                  </v-text-field>
+                  <v-layout>
+                    <v-spacer></v-spacer>
+                    <v-btn light @click="describe_token">Rechercher</v-btn>
+                    <v-spacer></v-spacer>
+                  </v-layout>
+                </v-card>
+              </vue-position-sticky>
 
-	      <div class="mt-0" v-if="description.length != 0">
-		<p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
-	        <v-card class="pa-2 my-2 " v-for="d in description">
-		  <v-layout align-center justify-space-around row fill-height/>
-		    <div class="width75 text-md-right">{{d.document}}</div>
-		    <div class="width75">Fréquence: {{d.freq}} </div>
-		    <div class="width75 text-md-left">Poids: {{d.weight}} </div>
-	          </v-layout>
-	        </v-card>
-	      </div>
+              <div class="mt-0" v-if="description.length != 0">
+                <p class="mt-4"> Le mot "{{token}}" apparaît dans les documents suivants:</p>
+                <v-card class="pa-2 my-2 " v-for="d in description">
+                  <v-layout align-center justify-space-around row fill-height>
+                    <div class="width75 text-md-right">{{d.document}}</div>
+                    <div class="width75">Fréquence: {{d.freq}} </div>
+                    <div class="width75 text-md-left">Poids: {{d.weight}} </div>
+                  </v-layout>
+                </v-card>
+              </div>
 
-	    </v-flex>
-	  </v-layout>
-	</v-container>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-content>
 
       <v-content v-if="tab == 2">
-	<v-container fill-height>
-	  <v-layout>
-	    <v-flex md8 offset-md2 >
+        <v-container fill-height>
+          <v-layout>
+            <v-flex md8 offset-md2 >
 
-	      <p> Saisissez une requête booléenne: </p>
+              <p> Saisissez une requête booléenne: </p>
 
-	      <vue-position-sticky :offset-Top="tbh">
-	      <v-card class="pa-3" elevation=24 v-show="!docdialog">
-		<v-text-field 
-			v-model="boolquery" 
-			label="Requête" 
-			color="#FFEB3B"
-			append-icon="close" 
-			:append-icon-cb="clear_b_query">
-		</v-text-field>
-		<v-layout>
-        	  <v-spacer></v-spacer>
-	   	  <v-btn light @click="process_boolean">Rechercher</v-btn>
-	          <v-spacer></v-spacer>
-		</v-layout>
-	      </v-card>
-	      </vue-position-sticky>
+              <vue-position-sticky :offset-Top="tbh">
+                <v-card class="pa-3" elevation=24 v-show="!docdialog">
+                  <v-text-field v-model="boolquery" label="Requête" color="#FFEB3B" append-icon="close" :append-icon-cb="clear_b_query">
+                  </v-text-field>
+                  <v-layout>
+                    <v-spacer></v-spacer>
+                    <v-btn light @click="process_boolean">Rechercher</v-btn>
+                    <v-spacer></v-spacer>
+                  </v-layout>
+                </v-card>
+              </vue-position-sticky>
 
-	      <div class="mt-0" v-if="booldesc.length != 0">
-	        <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p>
-		<v-layout wrap align-space-between justify-space-between >
+              <div class="mt-0" v-if="booldesc.length != 0">
+                <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p>
+                <v-layout wrap align-space-between justify-space-between >
 
-		  <v-flex md6 v-for="d in booldesc" class="px-2">
-		    <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
-		      <div class="cpointer"> {{d}} </div>
-	            </v-card>
-		  </v-flex md-6>
+                  <v-flex md6 v-for="d in booldesc" class="px-2">
+                    <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
+                      <div class="cpointer"> {{d}} </div>
+                    </v-card>
+                  </v-flex md-6>
 
-		</v-layout>
-	      </div>
+                </v-layout>
+              </div>
 
-	      <v-dialog v-model="docdialog" light width="500" >
-      		<v-card>
-		  <v-card-title   class="headline grey lighten-2"  primary-title> Document: {{doc}} </v-card-title>
-       		  <v-card-text> {{doctext}} </v-card-text>
-		  <v-divider></v-divider>
-		  <v-card-actions>
-    	 	    <v-spacer></v-spacer>
-          	    <v-btn color="secondary"  flat   @click="close_doc" > Fermer </v-btn>
-        	  </v-card-actions>
-      		</v-card>
-	      </v-dialog>
+              <v-dialog v-model="docdialog" light width="500" >
+                <v-card>
+                  <v-card-title   class="headline grey lighten-2"  primary-title> Document: {{doc}} </v-card-title>
+                  <v-card-text> {{doctext}} </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="secondary"  flat   @click="close_doc" > Fermer </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
 
-	    </v-flex>
-	  </v-layout>
-	</v-container>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-content>
 
       <v-content v-if="tab == 3">
-        <div style="height:400px; width:800px; background:green;">TAB 3</div>
+        <v-container fill-height>
+          <v-layout>
+            <v-flex md8 offset-md2 >
+
+              <p> Saisir la requête vectorielle: </p>
+
+              <vue-position-sticky :offset-Top="tbh">
+                <v-card class="pa-3" elevation=24 v-show="!docdialog">
+                  <v-text-field v-model="boolquery" label="Requête" color="#FFEB3B" append-icon="close" :append-icon-cb="clear_b_query"><!--UPDATE-->
+                  </v-text-field>
+                  <v-layout>
+                    <v-spacer></v-spacer>
+                    <v-btn light @click="process_boolean">Rechercher</v-btn><!--UPDATE-->
+                    <v-spacer></v-spacer>
+                  </v-layout>
+                </v-card>
+              </vue-position-sticky>
+
+              <div class="mt-0" v-if="booldesc.length != 0"><!--UPDATE-->
+                <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p><!--UPDATE-->
+                <v-layout wrap align-space-between justify-space-between >
+
+                  <v-flex md6 v-for="d in booldesc" class="px-2"><!--UPDATE-->
+                    <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
+                      <div class="cpointer"> {{d}} </div>
+                    </v-card>
+                  </v-flex md-6>
+
+                </v-layout>
+              </div>
+
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-content>
 
       <v-content v-if="tab == 4">
@@ -129,18 +152,18 @@
 
 
       <v-footer app light class="pa-4">
-        <div class="item"> 
-		USTHB M2 SII
-	</div>
+        <div class="item">
+          USTHB M2 SII
+        </div>
         <v-spacer></v-spacer>
-        <div class="item"> 
-		By devNir & LotfiBk
-	</div>
+        <div class="item">
+          By devNir & LotfiBk
+        </div>
         <v-spacer></v-spacer>
-        <div class="item"> 
-		{{ new Date().getFullYear() }} / 
-	 	{{ new Date().getFullYear() + 1}}
-	</div>
+        <div class="item">
+          {{ new Date().getFullYear() }} /
+          {{ new Date().getFullYear() + 1}}
+        </div>
       </v-footer>
 
     </v-app>
@@ -154,4 +177,3 @@
   <!--script type="text/javascript" src="scripts/simple-scrollbar.js"></script-->
 </body>
 </html>
-

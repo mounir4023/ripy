@@ -11,23 +11,6 @@ testbool = "test"
 testvect = "test"
 manager = DatasetManager(testdir)
 
-print("\nquery = test\n")
-print("\nword\n")
-print(len(manager.docs_of_token(testbool)))
-print("\nbool\n")
-print(len(manager.docs_of_boolean_q(testbool)))
-print("\nvect ip\n")
-print(len(manager.docs_of_vectorial_q_ip(testvect)))
-print("\nvect cd\n")
-print(len(manager.docs_of_vectorial_q_cd(testvect)))
-print("\nvect mc\n")
-print(len(manager.docs_of_vectorial_q_mc(testvect)))
-print("\nvect mj\n")
-print(len(manager.docs_of_vectorial_q_mc(testvect)))
-print(" ")
-"""
-"""
-
 @eel.expose
 def describe_token(token):
     description = [ ]
@@ -59,9 +42,8 @@ def get_all_docs():
     return manager.files
     
 
-
-#eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
-#eel.start('index.html', size=(1024,600), position=(150,50))
+eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
+eel.start('index.html', size=(1024,600), position=(150,50))
 
 
 
