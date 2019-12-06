@@ -5,14 +5,19 @@ from collections import Counter
 import eel
 
 testdir = "./dataset_files"
-testbool = "international * generic + world" 
-testvect = "international and generic-made human's" 
+#testbool = "international * generic + world" 
+#testvect = "world wide web"
+testbool = "test"
+testvect = "test"
 manager = DatasetManager(testdir)
 
+print("\nquery = test\n")
 print("\nbool\n")
 print(manager.docs_of_boolean_q(testbool))
-#print("\nvect\n")
-#print(manager.docs_of_vectorial_q(testvect))
+print("\nvect ip\n")
+print(manager.docs_of_vectorial_q_ip(testvect))
+print("\nvect cd\n")
+print(manager.docs_of_vectorial_q_cd(testvect))
 print(" ")
 
 @eel.expose
@@ -34,6 +39,7 @@ def process_boolean(query):
 
 @eel.expose
 def process_vectorial(query, mode):
+    # dont forget query.lower()
     return 
 
 @eel.expose
@@ -46,8 +52,9 @@ def get_all_docs():
     
 
 
-eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
-eel.start('index.html', size=(1024,600), position=(150,50))
+#eel.init('assets', allowed_extensions=['.js', '.html', '.css', '.png'])
+#eel.start('index.html', size=(1024,600), position=(150,50))
+
 
 
 

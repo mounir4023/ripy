@@ -110,7 +110,7 @@ class DatasetManager:
                 docs.append(doc)
         return docs
 
-    def docs_of_vectorial_q(self, query):
+    def docs_of_vectorial_q_ip(self, query):
         docs = [ ]
         tokens = nltk.word_tokenize(query)
         for doc in self.files:
@@ -123,6 +123,33 @@ class DatasetManager:
             if score > 0:
                 docs.append((doc,score))
         return sorted(docs, key = lambda doc: doc[1], reverse = True)
+
+    def docs_of_vectorial_q_cd(self, query):
+        docs = [ ]
+        #tokens = self.word_tokenize(query)
+        #qfs = Counter(self.word_tokenize(query))
+        tokens = Counter(nltk.word_tokenize(query))
+        for doc in self.files:
+            try:
+                score, ps, qfs, dfs = 0, 0, 0, 0
+                for item in tokens.items():
+                    qf = item[1]
+                    df = self.inverted_index[(item[0],doc)]
+                    ps = ps + qf * df
+                    qfs = qfs + qf * qf
+                    dfs = dfs + df * df
+                score = 2 * ps / (qfs + dfs)
+                if score > 0 :
+                    docs.append((doc,score))
+            except:
+                pass
+        return sorted(docs, key = lambda doc: doc[1], reverse = True)
+
+    def docs_of_vectorial_q_mc(self, query):
+        return
+
+    def docs_of_vectorial_q_mj(self, query):
+        return
 
 class DatafileDescriptor:
 
@@ -155,25 +182,4 @@ class DatafileDescriptor:
     def build_descriptor(self):
         self.make_tokens()
         self.descriptor = Counter(self.tokens)
-
-    def satisfy_boolean_q(self, query):
-        parsed = nestedExpr().parseString(query).asList()
-        print( parsed )
-        for i in parsed:
-            if str(type(i)) == "<class 'str'>":
-                print(i)
-        #tmp = re.findall(r'(\w+)[+]',parsed[0][0])
-        #split = re.findall(r'.*?[+]', parsed[0][0])
-        split = re.split(r'[+]', parsed[0][0] ) 
-        added = [ ]
-        for i in split[0:len(split)-1]:
-            added.append(i)
-            added.append('+')
-        added.append(split[-1])
-        print(added)
-        parsed[0][0:1] = added
-        print(parsed)
-        return 0
-
-
 
