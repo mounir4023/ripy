@@ -12,13 +12,17 @@ testvect = "test"
 manager = DatasetManager(testdir)
 
 print("\nquery = test\n")
+print("\nword\n")
+print(len(manager.docs_of_token(testbool)))
 print("\nbool\n")
-print(manager.docs_of_boolean_q(testbool))
+print(len(manager.docs_of_boolean_q(testbool)))
 print("\nvect ip\n")
-print(manager.docs_of_vectorial_q_ip(testvect))
+print(len(manager.docs_of_vectorial_q_ip(testvect)))
 print("\nvect cd\n")
-print(manager.docs_of_vectorial_q_cd(testvect))
+print(len(manager.docs_of_vectorial_q_cd(testvect)))
 print(" ")
+"""
+"""
 
 @eel.expose
 def describe_token(token):

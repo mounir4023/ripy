@@ -125,6 +125,34 @@ class DatasetManager:
         return sorted(docs, key = lambda doc: doc[1], reverse = True)
 
     def docs_of_vectorial_q_cd(self, query):
+
+        docs = [ ]
+
+        qtokens = Counter(nltk.word_tokenize(query))
+        qfreqs = 0
+        for i in qtokens.items():
+            qfreqs = qfreqs + i[1] * i[1]
+
+        for i in range(len(self.files)):
+
+            doc = self.files[i]
+            dtokens = self.descriptors[i].descriptor
+            dfreqs = 0
+            for i in dtokens.items():
+                dfreqs = dfreqs + i[1] * i[1]
+
+            score = 0
+            for i in qtokens.items():
+                score = score + dtokens[i[0]] * i[1]
+
+            score = 2 * score / ( qfreqs + dfreqs )
+
+            if score > 0 :
+                docs.append((doc,score))
+
+        return sorted(docs, key = lambda doc: doc[1], reverse = True)
+
+        """
         docs = [ ]
         tokens = Counter(nltk.word_tokenize(query))
         for doc in self.files:
@@ -142,6 +170,7 @@ class DatasetManager:
             except:
                 pass
         return sorted(docs, key = lambda doc: doc[1], reverse = True)
+        """
 
     def docs_of_vectorial_q_mc(self, query):
         return
