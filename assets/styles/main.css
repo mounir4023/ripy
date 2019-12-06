@@ -9,6 +9,18 @@
 	width:80px;
 }
 
+.width15 {
+	width:15px;
+}
+
+.width200 {
+	width:250px;
+}
+
+.font13 .v-label {
+	font-size:14px !important;
+}
+
 .cpointer {
 	cursor:pointer;
 }

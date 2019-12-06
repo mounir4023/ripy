@@ -105,7 +105,7 @@
 
               <p> Saisissez une requête vectorielle: </p>
 
-              <v-card class="pa-3" elevation=24 v-show="!docdialog">
+              <v-card class="pa-3" elevation=24 >
                 <v-layout wrap>
                   <v-flex md7 style="position:relative; margin-top:15px;">
                     <v-btn icon @click="clear_v_query" class="pull-right">
@@ -116,10 +116,10 @@
                   <v-flex md5>
                     <v-layout column justify-center align-center >
                       <v-radio-group v-model="vectmode" color="#FFEB3B">
-                        <v-radio color="#FFEB3B" label="Inner Product" value="IP"></v-radio>
-                        <v-radio color="#FFEB3B" label="Coef de Dice" value="CD"></v-radio>
-                        <v-radio color="#FFEB3B" label="Mesure de Cosinus" value="MC"></v-radio>
-                        <v-radio color="#FFEB3B" label="Mesure de Jaccard" value="MJ"></v-radio>
+                        <v-radio color="#FFEB3B" label="Inner Product" class="ma-0 font13" value="IP"></v-radio>
+                        <v-radio color="#FFEB3B" label="Coef de Dice" class="ma-0 font13" value="CD"></v-radio>
+                        <v-radio color="#FFEB3B" label="Mesure de Cosinus" class="ma-0 font13" value="MC"></v-radio>
+                        <v-radio color="#FFEB3B" label="Mesure de Jaccard" class="ma-0 font13" value="MJ"></v-radio>
                       </v-radio-group>
                       <v-btn light @click="process_vectorial">Rechercher</v-btn>
                     </v-layout>
@@ -129,18 +129,18 @@
 
               <div class="mt-0" v-if="vectdesc.length != 0">
                 <p class="mt-4"> Les documents séléctionnés triés par degré de pertinence sont:</p>
-                <v-layout wrap align-space-between justify-space-between >
-
-                  <v-flex md6 v-for="(d,i) in vectdesc" v-show="shown_in_page(i)" class="px-2">
-                    <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
-                      <div class="cpointer"> {{d}} </div>
-                    </v-card>
-                  </v-flex md-6>
-
-                </v-layout>
+                <v-card v-for="(d,i) in vectdesc" v-show="shown_in_page(i)" class="pa-2 my-2 text-sm-center cpointer" @click="open_doc(d[0])">
+                  <v-layout align-center justify-space-around row fill-height>
+                    <div class="width15 text-md-right">{{i+1}}</div>
+                    <div class="width75 text-md-right">{{d[0]}}</div>
+                    <div class="width200">Pertinence: {{d[1]}} </div>
+                  </v-layout>
+                </v-card>
               </div>
 
-              <v-pagination color="#FFEB3B" v-model="vectpage" :length="vectpages" ></v-pagination>
+              <v-layout wrap align-center justify-center >
+                <v-pagination color="#FFEB3B" v-model="vectpage" :length="vectpages" v-show="vectdesc.length > pagesize" ></v-pagination>
+              </v-layout>
 
             </v-flex>
           </v-layout>

@@ -84,6 +84,7 @@ var app = new Vue({
 		update_vectdesc: function(return_data) {
 			this.vectdesc = return_data;
 			this.vectpages = Math.ceil(1.0 * return_data.length / this.pagesize);
+			this.vectpage = 1;
 		},
 		update_doctext: function(return_data) {
 			this.doctext = return_data
