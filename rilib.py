@@ -126,8 +126,6 @@ class DatasetManager:
 
     def docs_of_vectorial_q_cd(self, query):
         docs = [ ]
-        #tokens = self.word_tokenize(query)
-        #qfs = Counter(self.word_tokenize(query))
         tokens = Counter(nltk.word_tokenize(query))
         for doc in self.files:
             try:
