@@ -17,6 +17,9 @@ var app = new Vue({
 		description: [ ],
 		booldesc: [ ],
 		vectdesc: [ ],
+		vectpages: 1,
+		vectpage: 1,
+		pagesize: 8,
 		vectmode: "IP",
 	},
 	computed : {
@@ -60,7 +63,10 @@ var app = new Vue({
 			q = q.replace(" not "," ! ");
 			return q;
 		},
-		close_doc() {
+		shown_in_page: function(index) {
+			return (this.pagesize * (this.vectpage-1) <= index) && (index < this.pagesize * this.vectpage)
+		},
+		close_doc: function() {
 			this.doc = "";
 			this.docdialog = false;
 			this.doctext = "";
@@ -77,6 +83,7 @@ var app = new Vue({
 		},
 		update_vectdesc: function(return_data) {
 			this.vectdesc = return_data;
+			this.vectpages = Math.ceil(1.0 * return_data.length / this.pagesize);
 		},
 		update_doctext: function(return_data) {
 			this.doctext = return_data

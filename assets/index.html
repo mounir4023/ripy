@@ -92,17 +92,6 @@
                 </v-layout>
               </div>
 
-              <v-dialog v-model="docdialog" light width="500" >
-                <v-card>
-                  <v-card-title   class="headline grey lighten-2"  primary-title> Document: {{doc}} </v-card-title>
-                  <v-card-text> {{doctext}} </v-card-text>
-                  <v-divider></v-divider>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="secondary"  flat   @click="close_doc" > Fermer </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
 
             </v-flex>
           </v-layout>
@@ -114,37 +103,35 @@
           <v-layout>
             <v-flex md8 offset-md2 >
 
-              <p> Saisir la requête vectorielle: </p>
+              <p> Saisissez une requête vectorielle: </p>
 
-              <vue-position-sticky :offset-Top="tbh">
-                <v-card class="pa-3" elevation=24 v-show="!docdialog">
-                  <v-layout wrap>
-                    <v-flex md7 style="position:relative; margin-top:15px;">
-                      <v-btn icon @click="clear_v_query" class="pull-right">
-                        <v-icon>close</v-icon>
-                      </v-btn>
-                      <v-textarea v-model="vectquery" label="Requête" color="#FFEB3B"></v-textarea>
-                    </v-flex>
-                    <v-flex md5>
-                      <v-layout column justify-center align-center >
-                        <v-radio-group v-model="vectmode" color="#FFEB3B">
-                          <v-radio color="#FFEB3B" label="Inner Product" value="IP"></v-radio>
-                          <v-radio color="#FFEB3B" label="Coef de Dice" value="CD"></v-radio>
-                          <v-radio color="#FFEB3B" label="Mesure de Cosinus" value="MC"></v-radio>
-                          <v-radio color="#FFEB3B" label="Mesure de Jaccard" value="MJ"></v-radio>
-                        </v-radio-group>
-                        <v-btn light @click="process_vectorial">Rechercher</v-btn>
-                      </v-layout>
-                    </v-flex>
-                  </v-layout>
-                </v-card>
-              </vue-position-sticky>
+              <v-card class="pa-3" elevation=24 v-show="!docdialog">
+                <v-layout wrap>
+                  <v-flex md7 style="position:relative; margin-top:15px;">
+                    <v-btn icon @click="clear_v_query" class="pull-right">
+                      <v-icon>close</v-icon>
+                    </v-btn>
+                    <v-textarea v-model="vectquery" label="Requête" color="#FFEB3B"></v-textarea>
+                  </v-flex>
+                  <v-flex md5>
+                    <v-layout column justify-center align-center >
+                      <v-radio-group v-model="vectmode" color="#FFEB3B">
+                        <v-radio color="#FFEB3B" label="Inner Product" value="IP"></v-radio>
+                        <v-radio color="#FFEB3B" label="Coef de Dice" value="CD"></v-radio>
+                        <v-radio color="#FFEB3B" label="Mesure de Cosinus" value="MC"></v-radio>
+                        <v-radio color="#FFEB3B" label="Mesure de Jaccard" value="MJ"></v-radio>
+                      </v-radio-group>
+                      <v-btn light @click="process_vectorial">Rechercher</v-btn>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
+              </v-card>
 
               <div class="mt-0" v-if="vectdesc.length != 0">
                 <p class="mt-4"> Les documents séléctionnés triés par degré de pertinence sont:</p>
                 <v-layout wrap align-space-between justify-space-between >
 
-                  <v-flex md6 v-for="d in vectdesc" class="px-2">
+                  <v-flex md6 v-for="(d,i) in vectdesc" v-show="shown_in_page(i)" class="px-2">
                     <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
                       <div class="cpointer"> {{d}} </div>
                     </v-card>
@@ -152,6 +139,8 @@
 
                 </v-layout>
               </div>
+
+              <v-pagination color="#FFEB3B" v-model="vectpage" :length="vectpages" ></v-pagination>
 
             </v-flex>
           </v-layout>
@@ -162,6 +151,17 @@
         <div style="height:400px; width:800px; background:blue;">TAB 4</div>
       </v-content>
 
+      <v-dialog v-model="docdialog" light width="500" >
+        <v-card>
+          <v-card-title   class="headline grey lighten-2"  primary-title> Document: {{doc}} </v-card-title>
+          <v-card-text> {{doctext}} </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="secondary"  flat   @click="close_doc" > Fermer </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <v-footer app light class="pa-4">
         <div class="item">
