@@ -20,6 +20,8 @@ print("\nvect ip\n")
 print(len(manager.docs_of_vectorial_q_ip(testvect)))
 print("\nvect cd\n")
 print(len(manager.docs_of_vectorial_q_cd(testvect)))
+print("\nvect mc\n")
+print(len(manager.docs_of_vectorial_q_mc(testvect)))
 print(" ")
 """
 """

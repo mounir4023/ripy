@@ -3,7 +3,6 @@ import re
 import nltk
 from collections import Counter
 import numpy as np
-from pyparsing import nestedExpr
 
 
 def clean_cacm(path,cleanname):
@@ -152,31 +151,33 @@ class DatasetManager:
 
         return sorted(docs, key = lambda doc: doc[1], reverse = True)
 
-        """
-        docs = [ ]
-        tokens = Counter(nltk.word_tokenize(query))
-        for doc in self.files:
-            try:
-                score, ps, qfs, dfs = 0, 0, 0, 0
-                for item in tokens.items():
-                    qf = item[1]
-                    df = self.inverted_index[(item[0],doc)]
-                    ps = ps + qf * df
-                    qfs = qfs + qf * qf
-                    dfs = dfs + df * df
-                score = 2 * ps / (qfs + dfs)
-                if score > 0 :
-                    docs.append((doc,score))
-            except:
-                pass
-        return sorted(docs, key = lambda doc: doc[1], reverse = True)
-        """
-
     def docs_of_vectorial_q_mc(self, query):
-        return
 
-    def docs_of_vectorial_q_mj(self, query):
-        return
+        docs = [ ]
+
+        qtokens = Counter(nltk.word_tokenize(query))
+        qfreqs = 0
+        for i in qtokens.items():
+            qfreqs = qfreqs + i[1] * i[1]
+
+        for i in range(len(self.files)):
+
+            doc = self.files[i]
+            dtokens = self.descriptors[i].descriptor
+            dfreqs = 0
+            for i in dtokens.items():
+                dfreqs = dfreqs + i[1] * i[1]
+
+            score = 0
+            for i in qtokens.items():
+                score = score + dtokens[i[0]] * i[1]
+
+            score =  score / np.sqrt( qfreqs * dfreqs )
+
+            if score > 0 :
+                docs.append((doc,score))
+
+        return sorted(docs, key = lambda doc: doc[1], reverse = True)
 
 class DatafileDescriptor:
 
