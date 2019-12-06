@@ -1,8 +1,8 @@
 
 //document.documentElement.style.overflow = 'hidden';
 
-var app = new Vue({ 
-	el: '#app', 
+var app = new Vue({
+	el: '#app',
 	data: {
 		tab: 1,
 		tbh: 64,
@@ -17,13 +17,14 @@ var app = new Vue({
 		description: [ ],
 		booldesc: [ ],
 		vectdesc: [ ],
+		vectmode: "IP",
 	},
 	computed : {
-		tb_height: function() { if (this.isMounted) console.log(this.$refs.tb.computedHeight); return 0; },
+		//tb_height: function() { if (this.isMounted) console.log(this.$refs.tb.computedHeight); return 0; },
 	},
 	methods: {
 		select_tab: function(selected) {
-			this.tab = selected; 
+			this.tab = selected;
 		},
 		open_doc: function(doc) {
 			this.doc = doc;
@@ -36,6 +37,9 @@ var app = new Vue({
 		process_boolean: function(){
 			eel.process_boolean(this.normalize_bq())(this.update_booldesc)
 		},
+		process_vectorial: function(){
+			eel.process_vectorial(this.vectquery, this.vectmode)(this.update_vectdesc)
+		},
 		clear_token: function() {
 			this.token = "";
 			this.description = [ ];
@@ -44,7 +48,11 @@ var app = new Vue({
 			this.boolquery = "";
 			this.booldesc = [ ];
 		},
-		normalize_bq: function() { 
+		clear_v_query: function() {
+			this.vectquery = "";
+			this.vectdesc = [ ];
+		},
+		normalize_bq: function() {
 			q = this.boolquery.replace(" or "," + ");
 			q = q.replace(" and "," * ");
 			if (q.substr(0,4) == "not ")
@@ -67,13 +75,16 @@ var app = new Vue({
 		update_booldesc: function(return_data) {
 			this.booldesc = return_data;
 		},
+		update_vectdesc: function(return_data) {
+			this.vectdesc = return_data;
+		},
 		update_doctext: function(return_data) {
 			this.doctext = return_data
 		},
 	},
 	mounted: function() {
 		this.isMounted = true;
-	}, 
+	},
 });
 
 

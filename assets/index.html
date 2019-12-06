@@ -118,21 +118,33 @@
 
               <vue-position-sticky :offset-Top="tbh">
                 <v-card class="pa-3" elevation=24 v-show="!docdialog">
-                  <v-text-field v-model="boolquery" label="Requête" color="#FFEB3B" append-icon="close" :append-icon-cb="clear_b_query"><!--UPDATE-->
-                  </v-text-field>
-                  <v-layout>
-                    <v-spacer></v-spacer>
-                    <v-btn light @click="process_boolean">Rechercher</v-btn><!--UPDATE-->
-                    <v-spacer></v-spacer>
+                  <v-layout wrap>
+                    <v-flex md7 style="position:relative; margin-top:15px;">
+                      <v-btn icon @click="clear_v_query" class="pull-right">
+                        <v-icon>close</v-icon>
+                      </v-btn>
+                      <v-textarea v-model="vectquery" label="Requête" color="#FFEB3B"></v-textarea>
+                    </v-flex>
+                    <v-flex md5>
+                      <v-layout column justify-center align-center >
+                        <v-radio-group v-model="vectmode" color="#FFEB3B">
+                          <v-radio color="#FFEB3B" label="Inner Product" value="IP"></v-radio>
+                          <v-radio color="#FFEB3B" label="Coef de Dice" value="CD"></v-radio>
+                          <v-radio color="#FFEB3B" label="Mesure de Cosinus" value="MC"></v-radio>
+                          <v-radio color="#FFEB3B" label="Mesure de Jaccard" value="MJ"></v-radio>
+                        </v-radio-group>
+                        <v-btn light @click="process_vectorial">Rechercher</v-btn>
+                      </v-layout>
+                    </v-flex>
                   </v-layout>
                 </v-card>
               </vue-position-sticky>
 
-              <div class="mt-0" v-if="booldesc.length != 0"><!--UPDATE-->
-                <p class="mt-4"> Les documents satisfaisant la requête "{{boolquery}}" sont:</p><!--UPDATE-->
+              <div class="mt-0" v-if="vectdesc.length != 0">
+                <p class="mt-4"> Les documents séléctionnés triés par degré de pertinence sont:</p>
                 <v-layout wrap align-space-between justify-space-between >
 
-                  <v-flex md6 v-for="d in booldesc" class="px-2"><!--UPDATE-->
+                  <v-flex md6 v-for="d in vectdesc" class="px-2">
                     <v-card class="pa-2 my-2 text-sm-center" @click="open_doc(d)">
                       <div class="cpointer"> {{d}} </div>
                     </v-card>
