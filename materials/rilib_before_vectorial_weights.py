@@ -110,43 +110,39 @@ class DatasetManager:
         return docs
 
     def docs_of_vectorial_q_ip(self, query):
-        
         docs = [ ]
-        
-        qtokens = set(nltk.word_tokenize(query))
-        
+        tokens = nltk.word_tokenize(query)
         for doc in self.files:
             score = 0
-            for token in qtokens:
+            for token in tokens:
                 try:
-                    score = score + self.w_inverted_index[(token,doc)]
+                    score = score + self.inverted_index[(token,doc)]
                 except:
                     pass
             if score > 0:
                 docs.append((doc,score))
-                
         return sorted(docs, key = lambda doc: doc[1], reverse = True)
 
     def docs_of_vectorial_q_cd(self, query):
 
         docs = [ ]
 
-        qtokens = set(nltk.word_tokenize(query))
-        qfreqs = len(qtokens)
-    
-        for doc in self.files:
+        qtokens = Counter(nltk.word_tokenize(query))
+        qfreqs = 0
+        for i in qtokens.items():
+            qfreqs = qfreqs + i[1] * i[1]
 
-            dtokens = self.w_tokens_of_doc(doc)
+        for i in range(len(self.files)):
+
+            doc = self.files[i]
+            dtokens = self.descriptors[i].descriptor
             dfreqs = 0
-            for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+            for i in dtokens.items():
+                dfreqs = dfreqs + i[1] * i[1]
 
             score = 0
-            for token in qtokens:
-                try:
-                    score = score + self.w_inverted_index[(token,doc)]
-                except:
-                    pass
+            for i in qtokens.items():
+                score = score + dtokens[i[0]] * i[1]
 
             score = 2 * score / ( qfreqs + dfreqs )
 
@@ -159,22 +155,22 @@ class DatasetManager:
 
         docs = [ ]
 
-        qtokens = set(nltk.word_tokenize(query))
-        qfreqs = len(qtokens)
-    
-        for doc in self.files:
+        qtokens = Counter(nltk.word_tokenize(query))
+        qfreqs = 0
+        for i in qtokens.items():
+            qfreqs = qfreqs + i[1] * i[1]
 
-            dtokens = self.w_tokens_of_doc(doc)
+        for i in range(len(self.files)):
+
+            doc = self.files[i]
+            dtokens = self.descriptors[i].descriptor
             dfreqs = 0
-            for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+            for i in dtokens.items():
+                dfreqs = dfreqs + i[1] * i[1]
 
             score = 0
-            for token in qtokens:
-                try:
-                    score = score + self.w_inverted_index[(token,doc)]
-                except:
-                    pass
+            for i in qtokens.items():
+                score = score + dtokens[i[0]] * i[1]
 
             score =  score / np.sqrt( qfreqs * dfreqs )
 
@@ -187,22 +183,22 @@ class DatasetManager:
 
         docs = [ ]
 
-        qtokens = set(nltk.word_tokenize(query))
-        qfreqs = len(qtokens)
-    
-        for doc in self.files:
+        qtokens = Counter(nltk.word_tokenize(query))
+        qfreqs = 0
+        for i in qtokens.items():
+            qfreqs = qfreqs + i[1] * i[1]
 
-            dtokens = self.w_tokens_of_doc(doc)
+        for i in range(len(self.files)):
+
+            doc = self.files[i]
+            dtokens = self.descriptors[i].descriptor
             dfreqs = 0
-            for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+            for i in dtokens.items():
+                dfreqs = dfreqs + i[1] * i[1]
 
             score = 0
-            for token in qtokens:
-                try:
-                    score = score + self.w_inverted_index[(token,doc)]
-                except:
-                    pass
+            for i in qtokens.items():
+                score = score + dtokens[i[0]] * i[1]
 
             score =  score / ( dfreqs + qfreqs - score )
 
