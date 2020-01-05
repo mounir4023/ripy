@@ -85,8 +85,8 @@ class DatasetManager:
     def w_docs_of_token(self, token):
         return [ (item[0][1],item[1]) for item in self.w_inverted_index.items() if item[0][0] == token ]
 
-    def w_tokens_of_doc(self, word):
-        return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == word ]
+    def w_tokens_of_doc(self, doc):
+        return [ (item[0][0],item[1]) for item in self.w_inverted_index.items() if item[0][1] == doc ]
 
     def docs_of_boolean_q(self, query):
         docs = [ ]
@@ -139,7 +139,7 @@ class DatasetManager:
             dtokens = self.w_tokens_of_doc(doc)
             dfreqs = 0
             for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+                dfreqs = dfreqs + token[1]
 
             score = 0
             for token in qtokens:
@@ -167,7 +167,7 @@ class DatasetManager:
             dtokens = self.w_tokens_of_doc(doc)
             dfreqs = 0
             for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+                dfreqs = dfreqs + token[1]
 
             score = 0
             for token in qtokens:
@@ -195,7 +195,7 @@ class DatasetManager:
             dtokens = self.w_tokens_of_doc(doc)
             dfreqs = 0
             for token in dtokens:
-                dfreqs = dfreqs + self.w_inverted_index[(token,doc)]
+                dfreqs = dfreqs + token[1]
 
             score = 0
             for token in qtokens:
