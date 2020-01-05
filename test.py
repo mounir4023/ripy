@@ -9,9 +9,6 @@ import sys
 import os
 
 testdir = "./dataset_files"
-testbool = "international * generic + world"
-testvect = "world wide web"
-manager = DatasetManager(testdir)
 
 def training_time():
     
