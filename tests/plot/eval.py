@@ -70,7 +70,7 @@ def get_metrics( query, num, N, S ):
         
 def mean_metrics(N, S):
     
-    test_set = list(perts.keys())
+    test_set = list(perts.keys())[:1]
     mean_acc = 0
     mean_rec = 0
     
@@ -90,7 +90,7 @@ def mean_metrics(N, S):
     return mean_acc, mean_rec
         
         
-N = [ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 ]
+N = [ 20, 40, 60, 80, 100 ]
 #S = [ 0.1, 0.25 ]
 S = 0.1
 
