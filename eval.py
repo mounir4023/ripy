@@ -70,7 +70,7 @@ def get_metrics( query, num, N, S ):
         
 def mean_metrics(N, S):
     
-    test_set = list(perts.keys())
+    test_set = list(perts.keys())[:5]
     mean_acc = 0
     mean_rec = 0
     
@@ -81,8 +81,8 @@ def mean_metrics(N, S):
         print(q)
         acc , rec = get_metrics(q, num, N, S)
         print(acc,' ',rec)
-        mean_acc += mean_acc
-        mean_rec += mean_rec
+        mean_acc += acc
+        mean_rec += rec
         
     mean_acc = mean_acc / len(test_set)
     mean_rec = mean_rec / len(test_set)
