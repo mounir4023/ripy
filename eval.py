@@ -76,11 +76,11 @@ def mean_metrics(N, S):
     
     for num in test_set:
         num = int(num)
-        print(num)
+        #print(num)
         q = queries[num-1] 
-        print(q)
+        #print(q)
         acc , rec = get_metrics(q, num, N, S)
-        print(acc,' ',rec)
+        #print(acc,' ',rec)
         mean_acc += acc
         mean_rec += rec
         
@@ -90,15 +90,35 @@ def mean_metrics(N, S):
     return mean_acc, mean_rec
         
         
-N = 50
+N = [ 10, 20, 30, 40, 50, 60, 80, 90, 100 ]
+#S = [ 0.1, 0.25 ]
 S = 0.1
 
-print(mean_metrics(N,S))
+accs = { }
+recs = { }
+accrecs = { }
+
+for n in N:
+    acc , rec = mean_metrics( n , S )
+    accs[n] = acc
+    recs[n] = rec
+    accrecs[n] = (acc,rec)
+
+print(accs)
+print("")
+print(recs)
+print("")
+print(accrecs)
+
+f1 = open('accs.p','wb')
+f2 = open('recs.p','wb')
+f3 = open('accrecs.p','wb')
+picke.dump(accs,f1)
+picke.dump(recs,f2)
+picke.dump(accrecs,f3)
 
 #save all metrics for each N value
 #save mean metrics for each N value
-#2S 10N values
-#trace results
 
 
 
