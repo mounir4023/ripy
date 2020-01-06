@@ -1,0 +1,157 @@
+1
+ What articles exist which deal with TSS (Time Sharing System), anoperating system for IBM computers?
+0.06   0.6
+2
+ I am interested in articles written either by Prieve or Udo Pooch.APrieve, B.Pooch, U.
+0.0   0.0
+3
+ Intermediate languages used in construction of multi-targeted compilers; TCOLL
+0.0   0.0
+4
+ I'm interested in mechanisms for communicating between disjoint processes,possibly, but not exclusively, in a distributed environment.  I wouldrather see descriptions of complete mechanisms, with or without implementations,as opposed to theoretical work on the abstract problem.  Remote procedurecalls and message-passing are examples of my interests.
+0.17647058823529413   0.25
+5
+ I'd like papers on design and implementation of editing interfaces,window-managers, command interpreters, etc.  The essential issues arehuman interface design, with views on improvements to user efficiency,effectiveness and satisfaction.
+0.14285714285714285   0.375
+6
+ Interested in articles on robotics, motion planning particularly thegeometric and combinatorial aspects.  We are not interested in thedynamics of arm motion.
+0.08333333333333333   0.3333333333333333
+7
+ I am interested in distributed algorithms - concurrent programs inwhich processes communicate and synchronize by using message passing.Areas of particular interest include fault-tolerance and techniquesfor understanding the correctness of these algorithms.
+0.3333333333333333   0.35714285714285715
+8
+ Addressing schemes for resources in networks; resource addressing innetwork operating systems
+0.02040816326530612   0.3333333333333333
+9
+ Security considerations in local networks, network operating systems,and distributed systems.
+0.08   0.4444444444444444
+10
+ Parallel languages; languages for parallel computation
+0.12   0.17142857142857143
+11
+ SETL, Very High Level Languages
+0.2   0.5263157894736842
+12
+ portable operating systems
+0.04   0.4
+13
+ code optimization for space efficiency
+0.1   0.45454545454545453
+14
+ find all discussions of optimal implementations of sort algorithms fordatabase management applications
+0.08   0.09090909090909091
+15
+ Find all discussions of horizontal microcode optimization with specialemphasis on optimization of loops and global optimization.
+0.23076923076923078   0.3
+16
+ find all descriptions of file handling in operating systems based onmultiple processes and message passing.
+0.04   0.11764705882352941
+17
+ Optimization of intermediate and machine code
+0.12   0.375
+18
+ Languages and compilers for parallel processors, especially highlyhorizontal microcoded machines; code compaction
+0.04   0.18181818181818182
+19
+ Parallel algorithms
+0.04   0.18181818181818182
+20
+ Graph theoretic algorithms applicable to sparse matrices
+0.04   0.6666666666666666
+21
+ computational complexity, intractability, class-complete reductions,algorithms and efficiency
+0.020833333333333332   0.09090909090909091
+22
+ I am interested in hidden-line and hidden-surface algorithms forcylinders, toroids, spheres, and cones.  This is a rather specializedtopic in computer graphics.
+0.23255813953488372   0.5882352941176471
+23
+ Distributed computing structures and algorithms
+0.08   1.0
+24
+ Applied stochastic processes
+0.04   0.07692307692307693
+25
+ Performance evaluation and modelling of computer systems
+0.1   0.09803921568627451
+26
+ Concurrency control mechanisms in operating systems
+0.1   0.16666666666666666
+27
+ Memory management aspects of operating systems
+0.24   0.41379310344827586
+28
+ Any information on packet radio networks.  Of particular interest arealgorithms for packet routing, and for dealing with changes innetwork topography.  I am not interested in the hardware used in thenetwork.
+0.13043478260869565   0.6
+29
+ Number-theoretic algorithms, especially involving prime number series,sieves, and Chinese Remainder theorem.
+0.18   0.47368421052631576
+30
+ Articles on text formatting systems, including "what you see is what youget" systems.  Examples: t/nroff, scribe, bravo.
+0.1   0.5
+31
+ I'd like to find articles describing the use of singular value decompositionin digital image processing.  Applications include finding approximationsto the original image and restoring images that are subject to noise. Anarticle on the subject is H.C. Andrews and C.L. Patterson "Outer productexpansions and their uses in digital image processing", American MathematicalMonthly, vol. 82..AAndrews, H.C.Patterson, C.L.
+0.027777777777777776   0.5
+32
+ I'd like to find articles describing graph algorithms that are based onthe eigenvalue decomposition (or singular value decomposition) of theajacency matrix for the graph.  I'm especially interested in any heuristicalgorithms for graph coloring and graph isomorphism using this method.
+0.02   0.3333333333333333
+33
+ Articles about the sensitivity of the eigenvalue decomposition of realmatrices, in particular, zero-one matrices.  I'm especially interested inthe separation of eigenspaces corresponding to distinct eigenvalues.Articles on the subject:C. Davis and W.M. Kahn, "The rotation of eigenvectors by a permutation:,SIAM J. Numerical Analysis, vol. 7, no. 1 (1970); G.W. Stewart, "Errorbounds for approximate invariant subspaces of closed linear operators",SIAM J. Numerical Analysis., Vol. 8, no. 4 (1971)..ADavis, C.Kahn, W.M.Stewart, G.W.
+0.021739130434782608   1.0
+36
+ Fast algorithm for context-free language recognition or parsing
+0.14   0.35
+37
+ Articles describing the relationship between data types and concurrency(e.g. what is the type of a process?  when is a synchronization attempt between two processes "type correct"?  in a message-passing system is thereany notion of the types of messages?--i.e. any way to check that the senderof the message and the receiver are both treating the bit stream as someparticular type)
+0.11538461538461539   0.25
+38
+ What is the type of a module?	(I don't want the entire literature onAbstract Data Types here, but I'm not sure how to phrase this to avoid it.I'm interested in questions about how one can check that a module "matches"contexts in which it is used.)
+0.2608695652173913   0.375
+39
+ What does type compatibility mean in languages that allow programmerdefined types?  (You might want to restrict this to "extensible" languagesthat allow definition of abstract data types or programmer-supplieddefinitions of operators like *, +.)
+0.08695652173913043   0.3333333333333333
+40
+ List all articles dealing with data types in the following languages:Pascal, CLU, Alphard, Russell, Ada, ALGOL 68, EL1.  List any other languagesthat are referenced frequently in papers on the above languages (e.g. catchany languages with interesting type structures that I might have missed).
+0.14583333333333334   0.7
+42
+ Computer performance evaluation techniques using pattern recognitionand clustering.
+0.06   0.14285714285714285
+43
+ Analysis and perception of shape by humans and computers.  Shapedescriptions, shape recognition by computer.  Two-dimensional shapes.Measures of circularity.  Shape matching.
+0.04   0.04878048780487805
+44
+ Texture analysis by computer.	Digitized texture analysis.  Texturesynthesis. Perception of texture.
+0.02   0.058823529411764705
+45
+ The use of operations research models to optimize information systemperformance.  This includes fine tuning decisions such as secondary indexselection, file reorganization, and distributed databases.
+0.10810810810810811   0.15384615384615385
+48
+ The use of computer science principles (e.g. data structures, numerical methods) in generating optimization (e.g. linear programming)algorithms.  This includes issues of the Khachian (Russian, ellipsoidal)algorithm and complexity of such algorithms.
+0.12   0.5
+49
+ The role of information retrieval in knowledge based systems(i.e., expert systems).
+0.06   0.375
+57
+ Abstracts of articles:    J. Backus, "Can programming be liberated from the Von Neumann style?               A functional style and its algebra of programs", CACM 21               (1978), 613-641.    R.a.De Millo, R.J. Lipton, A.J. Perlis, letter to ACM Forum, CACM 22	       (1979), 629-630.ABackus, J.De Millo, R.a.Lipton, R.J.Perlis, A.J.
+0.05555555555555555   1.0
+58
+ Algorithms or statistical packages for ANOVA, regression using leastsquares or generalized linear models.  System design, capabilities,statistical formula are of interest.  Student's t test, Wilcoxon andsign tests, multivariate and univariate components can be included.
+0.14   0.23333333333333334
+59
+ Dictionary construction and accessing methods for fast retrievalof words or lexical items or morphologically related information.Hashing or indexing methods are usually applied to English spelling ornatural language problems.
+0.18181818181818182   0.18604651162790697
+60
+ Hardware and software relating to database management systems.Database packages, back end computers, special associative hardwarewith microcomputers attached to disk heads or things like RAP, relational or network (CODASYL) or hierarchical models, systemslike SYSTEM R, IMS, ADABAS, TOTAL, etc.
+0.13793103448275862   0.14814814814814814
+61
+ Information retrieval articles by Gerard Salton or others about clustering,bibliographic coupling, use of citations or co-citations, the vectorspace model, Boolean search methods using inverted files, feedback, etc..ASalton, G.
+0.2   0.3225806451612903
+62
+ Results relating parallel complexity theory (both for PRAM's anduniform circuits).
+0.0   0.0
+63
+ Algorithms for parallel computation, and especially comparisonsbetween parallel and sequential algorithms.
+0.04   0.16666666666666666
+64
+ List all articles on EL1 and ECL (EL1 may be given as EL/1; I don'tremember how they did it.
+0.0   0.0
+(0.0, 0.0)
